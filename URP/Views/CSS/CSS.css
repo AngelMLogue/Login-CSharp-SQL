@@ -1,0 +1,174 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 10;
+}
+
+h4 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+table {
+    background-color: #fff;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+p {
+    color: #555;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+#player {
+    margin-top: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.btn {
+    padding: 8px 16px;
+    background-color: #343a40;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.alert-danger {
+    background-color: #f44336;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+    .alert-danger a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+.registration-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    backdrop-filter: blur(5px);
+    padding: 50px;
+    border-radius: 5px;
+    color: white; /* Añadido para que el texto dentro del formulario sea blanco */
+    width: 300px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column; /* Cambiado a una disposición de columna */
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px; /* Espacio adicional debajo de las etiquetas */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.btn {
+    padding: 8px 16px;
+    background-color: #343a40;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.alert-danger {
+    background-color: #f44336;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+    .alert-danger a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+.registration-link {
+    text-align: center;
+    margin-top: 20px;
+}

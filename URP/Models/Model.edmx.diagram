@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="65f1a51107f34c25943db8b58f7a9a84" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="URPDBModel.Grades" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="URPDBModel.Modules" Width="1.5" PointX="2.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="URPDBModel.Operations" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="URPDBModel.RolOperations" Width="1.5" PointX="4.875" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="URPDBModel.Rols" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="URPDBModel.Subjects" Width="1.5" PointX="8.875" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="URPDBModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="URPDBModel.Users" Width="1.5" PointX="6.75" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="URPDBModel.FK_Subjects_Grades" ManuallyRouted="false" />
+        <AssociationConnector Association="URPDBModel.FK_Users_Grades" ManuallyRouted="false" />
+        <AssociationConnector Association="URPDBModel.FK_Operations_Modules" ManuallyRouted="false" />
+        <AssociationConnector Association="URPDBModel.FK_RolOperations_Operations" ManuallyRouted="false" />
+        <AssociationConnector Association="URPDBModel.FK_RolOperations_Operations1" ManuallyRouted="false" />
+        <AssociationConnector Association="URPDBModel.FK_RolOperations_Rols" ManuallyRouted="false" />
+        <AssociationConnector Association="URPDBModel.FK_Users_Rols1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

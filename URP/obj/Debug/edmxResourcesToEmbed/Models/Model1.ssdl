@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="URPDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Modules">
+    <Key>
+      <PropertyRef Name="MID" />
+    </Key>
+    <Property Name="MID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Operations">
+    <Key>
+      <PropertyRef Name="OID" />
+    </Key>
+    <Property Name="OID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OName" Type="varchar" MaxLength="100" />
+    <Property Name="MID" Type="int" />
+  </EntityType>
+  <EntityType Name="RolOperations">
+    <Key>
+      <PropertyRef Name="ROID" />
+    </Key>
+    <Property Name="ROID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RID" Type="int" />
+    <Property Name="OID" Type="int" />
+  </EntityType>
+  <EntityType Name="Rols">
+    <Key>
+      <PropertyRef Name="RID" />
+    </Key>
+    <Property Name="RID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UName" Type="varchar" MaxLength="50" />
+    <Property Name="UEmail" Type="varchar" MaxLength="100" />
+    <Property Name="UPassword" Type="varchar" MaxLength="50" />
+    <Property Name="UDate" Type="datetime" />
+    <Property Name="RID" Type="int" />
+  </EntityType>
+  <Association Name="FK_Operations_Modules">
+    <End Role="Modules" Type="Self.Modules" Multiplicity="0..1" />
+    <End Role="Operations" Type="Self.Operations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modules">
+        <PropertyRef Name="MID" />
+      </Principal>
+      <Dependent Role="Operations">
+        <PropertyRef Name="MID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolOperations_Operations">
+    <End Role="Operations" Type="Self.Operations" Multiplicity="0..1" />
+    <End Role="RolOperations" Type="Self.RolOperations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operations">
+        <PropertyRef Name="OID" />
+      </Principal>
+      <Dependent Role="RolOperations">
+        <PropertyRef Name="OID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolOperations_Rols">
+    <End Role="Rols" Type="Self.Rols" Multiplicity="0..1" />
+    <End Role="RolOperations" Type="Self.RolOperations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rols">
+        <PropertyRef Name="RID" />
+      </Principal>
+      <Dependent Role="RolOperations">
+        <PropertyRef Name="RID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="URPDBModelStoreContainer">
+    <EntitySet Name="Modules" EntityType="Self.Modules" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Operations" EntityType="Self.Operations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolOperations" EntityType="Self.RolOperations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rols" EntityType="Self.Rols" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Operations_Modules" Association="Self.FK_Operations_Modules">
+      <End Role="Modules" EntitySet="Modules" />
+      <End Role="Operations" EntitySet="Operations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolOperations_Operations" Association="Self.FK_RolOperations_Operations">
+      <End Role="Operations" EntitySet="Operations" />
+      <End Role="RolOperations" EntitySet="RolOperations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolOperations_Rols" Association="Self.FK_RolOperations_Rols">
+      <End Role="Rols" EntitySet="Rols" />
+      <End Role="RolOperations" EntitySet="RolOperations" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

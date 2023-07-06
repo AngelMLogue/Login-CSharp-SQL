@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="URPDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Grades">
+    <Key>
+      <PropertyRef Name="GID" />
+    </Key>
+    <Property Name="GID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Subjects" Relationship="Self.FK_Subjects_Grades" FromRole="Grades" ToRole="Subjects" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Grades" FromRole="Grades" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Modules">
+    <Key>
+      <PropertyRef Name="MID" />
+    </Key>
+    <Property Name="MID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Operations" Relationship="Self.FK_Operations_Modules" FromRole="Modules" ToRole="Operations" />
+  </EntityType>
+  <EntityType Name="Operations">
+    <Key>
+      <PropertyRef Name="OID" />
+    </Key>
+    <Property Name="OID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MID" Type="Int32" />
+    <NavigationProperty Name="Modules" Relationship="Self.FK_Operations_Modules" FromRole="Operations" ToRole="Modules" />
+    <NavigationProperty Name="RolOperations" Relationship="Self.FK_RolOperations_Operations" FromRole="Operations" ToRole="RolOperations" />
+    <NavigationProperty Name="RolOperations1" Relationship="Self.FK_RolOperations_Operations1" FromRole="Operations" ToRole="RolOperations" />
+  </EntityType>
+  <EntityType Name="RolOperations">
+    <Key>
+      <PropertyRef Name="ROID" />
+    </Key>
+    <Property Name="ROID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RID" Type="Int32" />
+    <Property Name="OID" Type="Int32" />
+    <NavigationProperty Name="Operations" Relationship="Self.FK_RolOperations_Operations" FromRole="RolOperations" ToRole="Operations" />
+    <NavigationProperty Name="Operations1" Relationship="Self.FK_RolOperations_Operations1" FromRole="RolOperations" ToRole="Operations" />
+    <NavigationProperty Name="Rols" Relationship="Self.FK_RolOperations_Rols" FromRole="RolOperations" ToRole="Rols" />
+  </EntityType>
+  <EntityType Name="Rols">
+    <Key>
+      <PropertyRef Name="RID" />
+    </Key>
+    <Property Name="RID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="RolOperations" Relationship="Self.FK_RolOperations_Rols" FromRole="Rols" ToRole="RolOperations" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Rols1" FromRole="Rols" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Subjects">
+    <Key>
+      <PropertyRef Name="SID" />
+    </Key>
+    <Property Name="SID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GID" Type="Int32" />
+    <NavigationProperty Name="Grades" Relationship="Self.FK_Subjects_Grades" FromRole="Subjects" ToRole="Grades" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="URealName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ULastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UPassword" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="UDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UStatus" Type="Boolean" />
+    <Property Name="RID" Type="Int32" />
+    <Property Name="UConfirmPassword" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="GID" Type="Int32" />
+    <NavigationProperty Name="Grades" Relationship="Self.FK_Users_Grades" FromRole="Users" ToRole="Grades" />
+    <NavigationProperty Name="Rols" Relationship="Self.FK_Users_Rols1" FromRole="Users" ToRole="Rols" />
+  </EntityType>
+  <Association Name="FK_Subjects_Grades">
+    <End Role="Grades" Type="Self.Grades" Multiplicity="0..1" />
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grades">
+        <PropertyRef Name="GID" />
+      </Principal>
+      <Dependent Role="Subjects">
+        <PropertyRef Name="GID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Grades">
+    <End Role="Grades" Type="Self.Grades" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grades">
+        <PropertyRef Name="GID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="GID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Operations_Modules">
+    <End Role="Modules" Type="Self.Modules" Multiplicity="0..1" />
+    <End Role="Operations" Type="Self.Operations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modules">
+        <PropertyRef Name="MID" />
+      </Principal>
+      <Dependent Role="Operations">
+        <PropertyRef Name="MID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolOperations_Operations">
+    <End Role="Operations" Type="Self.Operations" Multiplicity="0..1" />
+    <End Role="RolOperations" Type="Self.RolOperations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operations">
+        <PropertyRef Name="OID" />
+      </Principal>
+      <Dependent Role="RolOperations">
+        <PropertyRef Name="OID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolOperations_Operations1">
+    <End Role="Operations" Type="Self.Operations" Multiplicity="0..1" />
+    <End Role="RolOperations" Type="Self.RolOperations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operations">
+        <PropertyRef Name="OID" />
+      </Principal>
+      <Dependent Role="RolOperations">
+        <PropertyRef Name="OID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolOperations_Rols">
+    <End Role="Rols" Type="Self.Rols" Multiplicity="0..1" />
+    <End Role="RolOperations" Type="Self.RolOperations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rols">
+        <PropertyRef Name="RID" />
+      </Principal>
+      <Dependent Role="RolOperations">
+        <PropertyRef Name="RID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Rols1">
+    <End Role="Rols" Type="Self.Rols" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rols">
+        <PropertyRef Name="RID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="URPDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Grades" EntityType="Self.Grades" />
+    <EntitySet Name="Modules" EntityType="Self.Modules" />
+    <EntitySet Name="Operations" EntityType="Self.Operations" />
+    <EntitySet Name="RolOperations" EntityType="Self.RolOperations" />
+    <EntitySet Name="Rols" EntityType="Self.Rols" />
+    <EntitySet Name="Subjects" EntityType="Self.Subjects" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_Subjects_Grades" Association="Self.FK_Subjects_Grades">
+      <End Role="Grades" EntitySet="Grades" />
+      <End Role="Subjects" EntitySet="Subjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Grades" Association="Self.FK_Users_Grades">
+      <End Role="Grades" EntitySet="Grades" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Operations_Modules" Association="Self.FK_Operations_Modules">
+      <End Role="Modules" EntitySet="Modules" />
+      <End Role="Operations" EntitySet="Operations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolOperations_Operations" Association="Self.FK_RolOperations_Operations">
+      <End Role="Operations" EntitySet="Operations" />
+      <End Role="RolOperations" EntitySet="RolOperations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolOperations_Operations1" Association="Self.FK_RolOperations_Operations1">
+      <End Role="Operations" EntitySet="Operations" />
+      <End Role="RolOperations" EntitySet="RolOperations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolOperations_Rols" Association="Self.FK_RolOperations_Rols">
+      <End Role="Rols" EntitySet="Rols" />
+      <End Role="RolOperations" EntitySet="RolOperations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Rols1" Association="Self.FK_Users_Rols1">
+      <End Role="Rols" EntitySet="Rols" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
